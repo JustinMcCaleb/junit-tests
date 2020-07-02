@@ -1,52 +1,46 @@
-import org.junit.Before;
 import org.junit.Test;
-
-import java.util.ArrayList;
-
 import static org.junit.Assert.*;
 
 public class StudentTest {
 
-    Student student1 = new Student(666, "Bowser");
-
-    @Before
-    public void setup() {
-        student1.setId(666);
-        student1.setName("Bowser");
-        student1.addGrade(90);
+    @Test
+    public void testCreateStudent() {
+        Student judas = new Student(1L, "Judas");
+        assertNotNull(judas);
     }
 
     @Test
-    public void testHasProperties() {
-        //ID Property
-        assertEquals(666, student1.getId());
-
-
-        //Name Property
-        assertEquals("Bowser", student1.getName());
+    public void testStudentProperties() {
+        Student priest = new Student(2L, "Priest");
+        assertEquals(2L, priest.getId());
+        assertSame("Priest", priest.getName());
+        assertSame(0, priest.getGrades().size());
     }
 
     @Test
-    public void testStudentConstructor() {
-        Student student2 = new Student(1, "bob");
-        assertEquals(1, student2.getId());
-        assertEquals("bob", student2.getName());
+    public void testAddGradeMethod() {
+        Student lucky = new Student(777, "Underlord");
+        assertSame(0, lucky.getGrades().size());
+
+        lucky.addGrade(100);
+        assertSame(1, lucky.getGrades().size());
+        assertSame(100, lucky.getGrades().get(0));
+
+        lucky.addGrade(90);
+        lucky.addGrade(99);
+        assertSame(3, lucky.getGrades().size());
+        assertSame(90, lucky.getGrades().get(1));
+        assertSame(99, lucky.getGrades().get(2));
     }
 
     @Test
-    public void testAddGrade() {
-        assertEquals(1, student1.getGrades().size());
-        student1.addGrade(97);
-        student1.addGrade(99);
-        assertEquals(3, student1.getGrades().size());
+    public void testGradeAverageMethod() {
+        Student lilith = new Student(777, "Lilith");
+
+        lilith.addGrade(100);
+        lilith.addGrade(50);
+        lilith.addGrade(90);
+
+        assertEquals(80.0, lilith.getGradeAverage(), 0);
     }
-
-    @Test
-    public void testGradeAverage() {
-        student1.addGrade(100);
-        student1.addGrade(78);
-        assertEquals(89, student1.getGradeAverage(), 1);
-    }
-
-
 }
