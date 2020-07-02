@@ -1,10 +1,11 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class Student {
 
     private long id;
     private String name;
-    private ArrayList<Integer> grades;
+    private List<Integer> grades;
 
 //    public Student(){}
 
@@ -31,7 +32,7 @@ public class Student {
         this.name = name;
     }
 
-    public ArrayList<Integer> getGrades() {
+    public List<Integer> getGrades() {
         return grades;
     }
 
